@@ -77,7 +77,7 @@ class Resource
     {
         return sprintf(
             '%s/%s',
-            rtrim($this->parent->baseUrl, '/'),
+            rtrim($this->parent->getBaseUrl(), '/'),
             ltrim($endpoint, '/')
         );
     }

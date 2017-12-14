@@ -54,6 +54,42 @@ class BaremetricsTest extends PHPUnit_Framework_TestCase
      *
      * @return [type]
      */
+    public function testEnvironmentCanBeSetAndGet()
+    {
+        $clientMock = Mockery::mock(\GuzzleHttp\Client::class);
+
+        $bm = new \Ampersa\Baremetrics\Baremetrics($clientMock);
+
+        $bm->setEnvironment('live');
+
+        $this->assertEquals('live', $bm->getEnvironment());
+    }
+
+    /**
+     *
+     *
+     * @return [type]
+     */
+    public function testBaseUrlThrowsExceptionOnMissingEnvironment()
+    {
+        $this->expectException(\UnexpectedValueException::class);
+
+        $clientMock = Mockery::mock(\GuzzleHttp\Client::class);
+
+        $bm = new \Ampersa\Baremetrics\Baremetrics($clientMock);
+
+        $bm->setEnvironment('12345');
+
+        $url = $bm->getBaseUrl();
+
+        $this->assertNull($url);
+    }
+
+    /**
+     *
+     *
+     * @return [type]
+     */
     public function testExceptionThrownOnInvalidMethod()
     {
         $this->expectException(\Ampersa\Baremetrics\Exceptions\BaremetricsInvalidMethodException::class);

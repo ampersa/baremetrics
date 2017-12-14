@@ -3,6 +3,7 @@
 namespace Ampersa\Baremetrics;
 
 use InvalidArgumentException;
+use UnexpectedValueException;
 use GuzzleHttp\Client as GuzzleClient;
 use Ampersa\Baremetrics\Exceptions\BaremetricsInvalidMethodException;
 
@@ -14,8 +15,14 @@ class Baremetrics
     /** @var string  An authentication key for the Baremetrics API */
     protected $key;
 
-    /** @var string  The base URL for the Baremetrics API */
-    public $baseUrl = 'https://api.baremetrics.com/v1';
+    /** @var array  An array of base URLs for the Baremetrics API */
+    protected $baseUrls = [
+        'live' => 'https://api.baremetrics.com/v1',
+        'sandbox' => 'https://api-sandbox.baremetrics.com/v1',
+    ];
+
+    /** @var string  The environment to communicate to the API in (Accepts: live, sandbox) */
+    public $environment = 'live';
 
     /** @var array  A map of available resources to their respective classes */
     protected $resources = [
@@ -34,6 +41,7 @@ class Baremetrics
         'segments' => Resources\Segments::class,
     ];
 
+
     public function __construct(GuzzleClient $client)
     {
         $this->client = $client;
@@ -42,7 +50,8 @@ class Baremetrics
     /**
      * Set the authentication key for the
      *
-     * @param string $key
+     * @param  string $key
+     * @return  Baremetrics
      */
     public function setKey(string $key) : self
     {
@@ -54,11 +63,48 @@ class Baremetrics
     /**
      * Retrieve the currently set authentication key
      *
-     * @param string $key
+     * @return  string
      */
     public function getKey() : string
     {
         return $this->key;
+    }
+
+    /**
+     * Get the base URL for communication with the API
+     *
+     * @return string
+     */
+    public function getBaseUrl() : string
+    {
+        if (! isset($this->baseUrls[$this->environment])) {
+            throw new UnexpectedValueException('[' . $this->environment .'] is not a valid communication environment');
+        }
+
+        return $this->baseUrls[$this->environment];
+    }
+
+    /**
+     * Set the environment for communication
+     *
+     * @param   string $env
+     * @return  Baremetrics
+     */
+    public function setEnvironment(string $env) : self
+    {
+        $this->environment = $env;
+
+        return $this;
+    }
+
+    /**
+     * Return the current environment
+     *
+     * @return string
+     */
+    public function getEnvironment() : string
+    {
+        return $this->environment;
     }
 
     /**
