@@ -44,6 +44,26 @@ class Response
     }
 
     /**
+     * Returns true if the request was successful
+     *
+     * @return bool
+     */
+    public function successful() : bool
+    {
+        return $this->statusCode == 200;
+    }
+
+    /**
+     * Returns true if the request failed
+     *
+     * @return bool
+     */
+    public function failed() : bool
+    {
+        return ! $this->successful();
+    }
+
+    /**
      * Return the response headers
      *
      * @return int
@@ -97,5 +117,15 @@ class Response
     public function __isset(string $key)
     {
         return isset($this->data->{$key});
+    }
+
+    /**
+     * Return the data from the Response as a JSON string when cast as a string
+     *
+     * @return string
+     */
+    public function __toString() : string
+    {
+        return json_encode($this->data);
     }
 }
