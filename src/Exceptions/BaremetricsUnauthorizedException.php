@@ -2,9 +2,9 @@
 
 namespace Ampersa\Baremetrics\Exceptions;
 
-use Exception;
+use Ampersa\Baremetrics\Exceptions\BaremetricsException;
 
-class BaremetricsUnauthorizedException extends Exception
+class BaremetricsUnauthorizedException extends BaremetricsException
 {
     //
 }

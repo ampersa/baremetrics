@@ -2,9 +2,9 @@
 
 namespace Ampersa\Baremetrics\Exceptions;
 
-use Exception;
+use Ampersa\Baremetrics\Exceptions\BaremetricsException;
 
-class BaremetricsInvalidMethodException extends Exception
+class BaremetricsInvalidMethodException extends BaremetricsException
 {
     //
 }
