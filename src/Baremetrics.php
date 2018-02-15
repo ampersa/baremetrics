@@ -26,7 +26,7 @@ class Baremetrics
 
     /** @var array  A map of available resources to their respective classes */
     protected $resources = [
-        'account' => \Ampersa\Baremetrics\Resources\Account::class,
+        'account' => Resources\Account::class,
         'sources' => Resources\Sources::class,
         'plans' => Resources\Plans::class,
         'customers' => Resources\Customers::class,
@@ -38,7 +38,6 @@ class Baremetrics
         'refunds' => Resources\Refunds::class,
         'events' => Resources\Events::class,
         'metrics' => Resources\Metrics::class,
-        'segments' => Resources\Segments::class,
     ];
 
 

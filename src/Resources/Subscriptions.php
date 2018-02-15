@@ -2,7 +2,6 @@
 
 namespace Ampersa\Baremetrics\Resources;
 
-use GuzzleHttp\Client as GuzzleClient;
 use Ampersa\Baremetrics\Support\Response;
 
 class Subscriptions extends Resource
