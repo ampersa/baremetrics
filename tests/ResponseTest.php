@@ -3,9 +3,8 @@
 namespace Ampersa\Baremetrics\Tests;
 
 use Mockery;
-use PHPUnit_Framework_TestCase;
 
-class ResponseTest extends PHPUnit_Framework_TestCase
+class ResponseTest extends \PHPUnit\Framework\TestCase
 {
     /**
      *
