@@ -4,9 +4,8 @@ namespace Ampersa\Baremetrics\Tests;
 
 use Mockery;
 use TypeError;
-use PHPUnit_Framework_TestCase;
 
-class MetricsTest extends PHPUnit_Framework_TestCase
+class MetricsTest extends \PHPUnit\Framework\TestCase
 {
     public function testSummaryCallsCorrectEndpointAndReturnsExpected()
     {
